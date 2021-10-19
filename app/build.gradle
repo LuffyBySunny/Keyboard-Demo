@@ -21,7 +21,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.google.android.samples.insetschat"
+        applicationId "com.example.insetschat"
         minSdkVersion 14
         targetSdkVersion 30
         versionCode 1

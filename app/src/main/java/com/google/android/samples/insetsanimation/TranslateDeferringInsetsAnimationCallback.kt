@@ -16,6 +16,7 @@
 
 package com.google.android.samples.insetsanimation
 
+import android.util.Log
 import android.view.View
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsAnimationCompat
@@ -49,6 +50,14 @@ class TranslateDeferringInsetsAnimationCallback(
             "persistentInsetTypes and deferredInsetTypes can not contain any of " +
                     " same WindowInsetsCompat.Type values"
         }
+    }
+
+    override fun onStart(
+        animation: WindowInsetsAnimationCompat,
+        bounds: WindowInsetsAnimationCompat.BoundsCompat
+    ): WindowInsetsAnimationCompat.BoundsCompat {
+        //Log.e("WindowInsetsAnimationCompat", bounds)
+        return super.onStart(animation, bounds)
     }
 
     override fun onProgress(

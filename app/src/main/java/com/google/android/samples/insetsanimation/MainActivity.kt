@@ -35,6 +35,9 @@ class MainActivity constructor(): AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.fragmentConversation.setOnClickListener {
+            ConversationFragment().show(supportFragmentManager, "dialog")
+        }
         //ViewCompat.getWindowInsetsController(binding.root)?.hide(WindowInsetsCompat.Type.statusBars())
 
         // Tell the Window that our app is going to responsible for fitting for any system windows.

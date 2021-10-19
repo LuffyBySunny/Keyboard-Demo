@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.android.samples.insetsanimation.databinding.FragmentConversationBinding
 
@@ -30,7 +31,7 @@ import com.google.android.samples.insetsanimation.databinding.FragmentConversati
  * The main entry point for the sample. See [onViewCreated] for more information on how
  * the sample works.
  */
-class ConversationFragment : Fragment() {
+class ConversationFragment : DialogFragment() {
     private var _binding: FragmentConversationBinding? = null
     private val binding: FragmentConversationBinding get() = _binding!!
 
@@ -64,9 +65,8 @@ class ConversationFragment : Fragment() {
         )
         // RootViewDeferringInsetsCallback is both an WindowInsetsAnimation.Callback and an
         // OnApplyWindowInsetsListener, so needs to be set as so.
-        //ViewCompat.setWindowInsetsAnimationCallback(binding.root, deferringInsetsListener)
+        ViewCompat.setWindowInsetsAnimationCallback(binding.root, deferringInsetsListener)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root, deferringInsetsListener)
-
         /**
          * 2) The second step is reacting to any animations which run. This can be system driven,
          * such as the user focusing on an EditText and on-screen keyboard (IME) coming on screen,
@@ -82,7 +82,8 @@ class ConversationFragment : Fragment() {
          * Note about [TranslateDeferringInsetsAnimationCallback], it relies on the behavior of
          * [RootViewDeferringInsetsCallback] on the layout's root view.
          */
-       /* ViewCompat.setWindowInsetsAnimationCallback(
+
+        ViewCompat.setWindowInsetsAnimationCallback(
             binding.messageHolder,
             TranslateDeferringInsetsAnimationCallback(
                 view = binding.messageHolder,
@@ -92,15 +93,15 @@ class ConversationFragment : Fragment() {
                 // child views, so that step 2.5 below receives the call
                 dispatchMode = WindowInsetsAnimationCompat.Callback.DISPATCH_MODE_CONTINUE_ON_SUBTREE
             )
-        )*/
-       /* ViewCompat.setWindowInsetsAnimationCallback(
+        )
+        ViewCompat.setWindowInsetsAnimationCallback(
             binding.conversationRecyclerview,
             TranslateDeferringInsetsAnimationCallback(
                 view = binding.conversationRecyclerview,
                 persistentInsetTypes = WindowInsetsCompat.Type.systemBars(),
                 deferredInsetTypes = WindowInsetsCompat.Type.ime()
             )
-        )*/
+        )
 
         /**
          * 2.5) We also want to make sure that our EditText is focused once the IME
