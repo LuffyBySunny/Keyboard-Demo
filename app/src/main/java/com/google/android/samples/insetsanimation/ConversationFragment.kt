@@ -31,7 +31,7 @@ import com.google.android.samples.insetsanimation.databinding.FragmentConversati
  * The main entry point for the sample. See [onViewCreated] for more information on how
  * the sample works.
  */
-class ConversationFragment : DialogFragment() {
+class ConversationFragment : Fragment() {
     private var _binding: FragmentConversationBinding? = null
     private val binding: FragmentConversationBinding get() = _binding!!
 

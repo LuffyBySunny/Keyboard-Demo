@@ -20,7 +20,9 @@ import android.app.PictureInPictureParams
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.samples.insetsanimation.databinding.ActivityMainBinding
 
 /**
@@ -35,15 +37,18 @@ class MainActivity constructor(): AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.fragmentConversation.setOnClickListener {
-            ConversationFragment().show(supportFragmentManager, "dialog")
+        binding.showFragment.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment, ConversationFragment(), "f").commit()
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+
         }
         //ViewCompat.getWindowInsetsController(binding.root)?.hide(WindowInsetsCompat.Type.statusBars())
 
         // Tell the Window that our app is going to responsible for fitting for any system windows.
         // This is similar to the now deprecated:
         // view.setSystemUiVisibility(LAYOUT_STABLE | LAYOUT_FULLSCREEN | LAYOUT_FULLSCREEN)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        //supportFragmentManager.beginTransaction().replace(R.id.fragment, ConversationFragment(), "f").commit()
+
     }
 
     override fun onUserLeaveHint() {
